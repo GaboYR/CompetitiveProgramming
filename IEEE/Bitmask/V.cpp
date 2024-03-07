@@ -1,60 +1,61 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn = 2e5 + 2;
+const int maxn = 2e5 + 5;
 int a[maxn];
-map<int,int> mp;
-int main () {
+bool pow2(int x)
+{
+    return x & (x - 1);
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int n;  cin >> n;
-    for (int i = 0; i < n; i ++) {
-        cin >> a[i];
-        mp[a[i]] = 1;
+    set<int> s;
+    int d;
+    for (int i = 0;i < n; i ++)
+    {
+        cin >> d;
+        s.insert(d);
     }
-    
-    sort(a,a + n);
-    int l = a[n - 1];
-    vector<int> sol;
-    vector<int> mx;
-    vector<vector<int>> all;
-    for (int i = 0; i < n; i ++) {
-        int res = 0;
-        int j = 0;
-        sol.emplace_back(a[i]);
-        while (a[i] + (1<<j) <= l) {
-            if (mp[a[i] + (1<<j)] != 0) {
-                res ++;
-                sol.emplace_back(a[i] + (1<<j));
+    int ans = 1;
+    int l,h;
+    bool found = false;
+    bool is = false;
+    for (auto it = s.begin();it != s.end();it ++)
+    {
+        int diff = 0;
+        
+        int exp = 31;
+        while (diff < exp && !is)
+        {
+            if (s.count(*it + (1<<diff)))
+            {   
+                ans = 2;
+                l = *it;
+                h = l + (1<<diff);
+                if (s.count(*it + 2 * (1<<diff)))
+                {
+                    found = true;
+                    is = true;
+                    ans = 3;
+                    cout << ans <<'\n';
+                    cout << *it << " " << *it + (1<<diff) << " " << *it + 2 * (1<<diff);
+                    break;
+                }
             }
-            j ++;
+            diff ++; 
         }
-        if (sol.size() > 1) {
-            if (mx.empty()) mx = sol;
-            else {
-                if (sol.size() > mx.size()) mx = sol;
-            }
-        }
-        sol.clear();
+        
     }
-    if (mx.empty()) {
-        cout << "1\n" << a[0] << "\n";
+    if (ans == 2 && !found)
+    {
+        cout << ans <<'\n';
+        cout << l << ' ' << h;
     }
-    else {
-        if (mx.size() > 3) {
-            cout << mx.size() - 1 << "\n";
-            int i = 0,j = 1;
-            int d = a[j] - a[i];
-            for (int i = 0; i < mx.size() - 1; i ++) {
-                cout << mx[i] << " ";
-            }
-            cout << '\n';
-        }
-        else {
-            cout << mx.size() << "\n";
-            for (int i = 0; i < mx.size(); i ++) {
-                cout << mx[i] << " ";
-            }
-            cout << '\n';
-        }
+    else if (!found){
+        cout << 1 << '\n' << *s.begin();
     }
-    
     return 0;
 }
