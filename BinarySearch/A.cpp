@@ -1,3 +1,7 @@
+/*
+Link : https://codeforces.com/problemset/problem/1117/C
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 int x,y,p,q,len;
