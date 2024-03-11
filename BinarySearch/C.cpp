@@ -1,40 +1,44 @@
+/*
+    Link : https://codeforces.com/contest/255/problem/D
+*/
 #include<bits/stdc++.h>
 using namespace std;
-#define all(x) x.begin(),x.end()
-#define sz(x) (int)x.size()
-#define fast_io ios_base::sync_with_stdio(false);cin.tie(nullptr);
-#define cin std::cin
-#define cout std::cout
-using ll = long long;
-using ld = long double;
-using ii = pair<int,int>;
-using vi = vector<int>;
-using vii = vector<ii>;
-ll n,x,y,c;
-ll numb(ll num) {
-    return (num + 1) * (num + 2)/ 2;
+long long x,y,n,c;
+long long calc(long long a,long long b,long long t)
+{
+    long long mx = max(a,b);
+    long long mn = min(a,b);
+    if (t <= mn)                            return (t * t + t) / 2;
+    else if (t > mn && t <= mx)             return (mn * mn + mn) / 2 + (t - mn) * mn;
+    else if (t > mx && t <= mx + mn - 1)    return (mn * mn + mn) / 2 + (mx - mn) * mn + mn * (t - mx) - (t - mx) * (t - mx + 1) / 2;
+    else return mn * mx;
 }
-ll count(ll it,ll x,ll y,ll limx,ll limy) {
-    if (it < 0) return 0;
-    
+long long f(long long m)
+{
+    long long ru = calc(n - x + 1,n - y + 1,m + 1);
+    long long lu = calc(x - 1,n - y + 1,m);
+    long long ld = calc(x - 1,y - 1,m - 1);
+    long long rd = calc(n - x + 1,y - 1,m);
+    //cout << ru << ' ' << lu << ' ' << ld << ' ' << rd << '\n';
+    return ru + lu + ld + rd;
 }
-ll f(int m) {
-    return  count(m, x, y , n, 1) +
-            count(m - 1, x - 1, y, 1, 1) + 
-            count(m - 2, x - 1, y + 1, 1, n) + 
-            count(m - 1, x, y + 1, n, n);
-}
-int main(){
-    fast_io
+int main ()
+{
     cin >> n >> x >> y >> c;
-    int low = 0,high = 2 * n;
-    while (low < high) {
+    long long low = 0,high = 2 * n + 1;
+    while (high - low != 1)
+    {
         int mid = low + (high - low) / 2;
-        if (f(mid) > c)   low = mid + 1;
-        else high = mid;
+        //cout << low << ' ' << high << ' ' << f(mid) << '\n';
+        if (f(mid) >= c) high = mid; 
+        else low = mid;
     }
+    //cout << low << ' ' << f(low) << ' ' << high << ' ' << f(high) << '\n';
+    if (f(low) < c) cout << high;
+    else cout << low;
+    // for (int i = 0; i <= 2 * n; i ++)
+    // {
+    //     cout << i << ' ' << f(i) << '\n';
+    // }
     return 0;
 }
-//Para lectura o salida de archivo
-//g++ name.cpp  < in.txt(lee los datos desde el archivo in.txt)
-//g++ name.cpp > out.txt(manda la salida a un nvo archivo out.txt)
