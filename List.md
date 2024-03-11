@@ -2,15 +2,18 @@
 
 ## Themes
 
-### a.STL
+### STL
 1. [Room allocation](https://cses.fi/problemset/task/1164)
 
 2. [League of lessins](https://codeforces.com/problemset/problem/1255/C)
 
-### b. Brute force
+### Brute force
 
+### Recursion
 
-### a. Divide and Conquer
+1. [Karuta](https://atcoder.jp/contests/abc287/tasks/abc287_e?lang=en)
+
+### Divide and Conquer
 1. [Three sorted array](https://codeforces.com/gym/100589/problem/J)
 
 2. [Merge set](https://atcoder.jp/contests/abc306/tasks/abc306_f?lang=en)
@@ -20,4 +23,8 @@
 ## Contests
 1. [STL](https://vjudge.net/contest/556016#rank)
 
-markdown: kramdown
+2. [Brute force](https://vjudge.net/contest/557496)
+
+3. [Brute force 2](https://vjudge.net/contest/561146)
+
+4. [Recursion](https://vjudge.net/contest/562025)
