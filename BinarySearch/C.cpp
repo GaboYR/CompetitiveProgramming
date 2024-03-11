@@ -19,7 +19,6 @@ long long f(long long m)
     long long lu = calc(x - 1,n - y + 1,m);
     long long ld = calc(x - 1,y - 1,m - 1);
     long long rd = calc(n - x + 1,y - 1,m);
-    //cout << ru << ' ' << lu << ' ' << ld << ' ' << rd << '\n';
     return ru + lu + ld + rd;
 }
 int main ()
@@ -29,16 +28,10 @@ int main ()
     while (high - low != 1)
     {
         int mid = low + (high - low) / 2;
-        //cout << low << ' ' << high << ' ' << f(mid) << '\n';
         if (f(mid) >= c) high = mid; 
         else low = mid;
     }
-    //cout << low << ' ' << f(low) << ' ' << high << ' ' << f(high) << '\n';
     if (f(low) < c) cout << high;
     else cout << low;
-    // for (int i = 0; i <= 2 * n; i ++)
-    // {
-    //     cout << i << ' ' << f(i) << '\n';
-    // }
     return 0;
 }
