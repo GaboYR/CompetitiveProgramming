@@ -20,6 +20,9 @@
 
 3. [Queue](https://codeforces.com/problemset/problem/91/B)
 
+### Binary search
+
+
 ## Contests
 1. [STL](https://vjudge.net/contest/556016#rank)
 
@@ -28,3 +31,5 @@
 3. [Brute force 2](https://vjudge.net/contest/561146)
 
 4. [Recursion](https://vjudge.net/contest/562025)
+
+5. [Binary Search](https://vjudge.net/contest/579212)
