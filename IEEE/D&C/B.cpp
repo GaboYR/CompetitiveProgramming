@@ -19,7 +19,7 @@ long long dc(vector<int> &l,vector<int> &r)
             ans += j;
         }
     }
-    while (i ++ < sz(l))   ans += j;
+	while (i ++ < sz(l))   ans += j;
 	return ans;
 }
 long long merge(vector<int> &a,vector<int> &b)
