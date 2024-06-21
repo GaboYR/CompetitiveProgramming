@@ -6,7 +6,7 @@ void solve(int n) {
         int S = 0;
         while (S < s) {
            int x = i,y = S - x;
-           cin >> 
+           
         }
     }
 }
